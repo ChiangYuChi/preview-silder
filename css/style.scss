@@ -1,0 +1,244 @@
+@mixin main-style() {
+  width: 100%;
+  height: 800px;
+  position: relative;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  padding: 0 0;
+  background-color: #fff;
+  font-family: "Lato", sans-serif;
+  color: #555;
+  -webkit-font-smoothing: antialiased; //字體抗鋸齒
+}
+
+.silder {
+  @include main-style();
+  position: relative;
+
+  .main {
+    @include main-style();
+    overflow: hidden;
+
+    .main-item {
+      width: 100%;
+      height: 800px;
+      position: absolute;
+      opacity: 0;
+      right: 50%;
+
+      -webkit-transition: all 1s 0.5s;
+      // -webkit-filter: grayscale(1);
+
+      z-index: 2;
+
+
+
+
+      img {
+        width: 100%;
+        z-index: 1;
+        position: absolute;
+      }
+
+      .caption {
+        top: 15%;
+        right: 60%;
+        position: absolute;
+        z-index: 9;
+        color: white;
+        font-family: "Playfair Display", sans-serif;
+        font-size: 50px;
+
+        h1,
+        h2 {
+          font-size: 13vh;
+          line-height: 13vh;
+
+          text-align: right;
+          // -webkit-animation: cutTextDown 0.8s 0.8s;
+          // text-shadow: 5px 5px #333;
+        }
+
+
+
+        h1 {
+          margin-right: 45px;
+          -webkit-transition: all 1s 0.8s;
+        }
+
+        h2 {
+          margin-right: -45px;
+          -webkit-transition: all 1s 0.8s;
+        }
+
+
+      }
+
+
+
+      .main-button {
+        position: absolute;
+        z-index: 9;
+        background-color: red;
+        width: 200px;
+        height: 200px;
+
+
+      }
+
+
+
+
+    }
+
+
+
+
+    .main-item-right {
+      right: -50%;
+    }
+
+    .main-item-active {
+      opacity: 1;
+      right: 0;
+      z-index: 2;
+      -webkit-transition: ease-in 0.5s;
+
+      .caption {
+
+        h1,
+        h2 {
+          margin-right: 0;
+          opacity: 1;
+
+
+
+
+        }
+      }
+
+
+
+
+
+
+
+    }
+
+
+    #main-background {
+      opacity: 1;
+      right: 0;
+      z-index: 1;
+    }
+
+
+  }
+
+  .ctrl {
+    width: 100%;
+    height: 53px;
+    line-height: 13px;
+    text-align: right;
+    bottom: 0px;
+
+    position: absolute;
+
+    .ctrl-item {
+      display: inline-block;
+      width: 150px;
+      height: 53px;
+      background-color: rgba(46, 49, 52, 0.7);
+
+
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+      position: relative;
+      z-index: 999;
+      margin-left: 5px;
+      text-decoration: none;
+      line-height: 53px;
+      font-size: 12px;
+      text-align: center;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 400;
+      color: white;
+
+
+      &:hover {
+        background-color: #f0f0f0;
+        cursor: pointer;
+
+        img {
+          bottom: 13px;
+          opacity: 1;
+          -webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(50%, transparent), to(rgba(255, 255, 255, 0.3)));
+
+          //  -webkit-box-reflect: below 倒影方向 0px 偏移 -webkit-gradient 遮罩：漸變(linear 線性漸變, left top 起始位置, left bottom 結束位置, from(transparent)開始顏色, color-stop(50%, transparent)中間位置 過度點 顏色, 結束顏色to(rgba(255, 255, 255, .3)));
+        }
+      }
+
+      img {
+        width: 100%;
+        position: absolute;
+        left: 0;
+        bottom: 50px;
+        z-index: 1;
+        opacity: 0;
+        -webkit-transition: all 0.2s;
+      }
+    }
+
+    .ctrl-item-active {
+      background-color: rgba(255, 255, 255, 0.4);
+      color: black;
+
+      &:hover {
+        background-color: white;
+
+
+        img {
+          opacity: 0;
+        }
+      }
+    }
+  }
+}
+
+
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes cutTextDown {
+  from {
+    clip-path: inset(100% 0 0 0);
+  }
+
+  to {
+    clip-path: inset(-10% 0 -20% 0);
+    opacity: 1;
+  }
+}
